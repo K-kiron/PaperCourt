@@ -1,0 +1,28 @@
+name: Bug report
+description: Report a reproducible problem in installation, checks, or evidence reports.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: Use a minimal synthetic example. Do not attach private manuscripts, credentials, or unpublished data.
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and observed behavior
+      description: Include the command, exit code, and the specific incorrect result or broken link.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: Provide a small redistributable case or steps that reproduce the problem.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: PaperCourt version or commit, Python version, operating system, and agent host if relevant.
+    validations:
+      required: true

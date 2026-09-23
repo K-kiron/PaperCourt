@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-labelledby="title description">
+  <title id="title">PaperCourt: put claims in front of evidence</title>
+  <desc id="description">A paper claims a five-point gain. Its results are 82 and 80, giving two points. PaperCourt links the claim to the calculation and source evidence.</desc>
+  <rect width="1280" height="420" rx="20" fill="#102e30"/>
+  <path d="M48 40h1184" stroke="#50d0b4" stroke-width="4"/>
+  <g font-family="Segoe UI,Arial,sans-serif">
+    <text x="64" y="105" fill="#8bdcc8" font-size="15" letter-spacing="4">EMPIRICAL ML / CLAIM AUDIT</text>
+    <text x="60" y="191" fill="#f6fbf8" font-size="76" font-weight="700" letter-spacing="-3">PaperCourt</text>
+    <text x="64" y="246" fill="#d7e7e2" font-size="26">Put claims in front of evidence.</text>
+    <text x="64" y="335" fill="#9ebeb7" font-size="17">Exact sources. Repeatable checks.</text>
+    <text x="64" y="363" fill="#9ebeb7" font-size="17">Concrete experiments that could prove a claim wrong.</text>
+    <rect x="704" y="82" width="512" height="268" rx="12" fill="#f4f7f2"/>
+    <text x="732" y="125" fill="#53706b" font-size="13" letter-spacing="2">THE CLAIM</text>
+    <text x="732" y="163" fill="#193b38" font-size="25" font-weight="600">“A 5.0-point accuracy gain.”</text>
+    <path d="M732 187h456" stroke="#cfddd6"/>
+    <text x="732" y="221" fill="#53706b" font-size="13" letter-spacing="2">THE SUPPLIED RESULTS</text>
+    <text x="732" y="270" fill="#12675e" font-size="38" font-weight="700">82.0 − 80.0 = 2.0</text>
+    <rect x="732" y="294" width="195" height="30" rx="5" fill="#ffe6d3"/>
+    <text x="746" y="315" fill="#87421c" font-size="14" font-weight="600">Numeric inconsistency</text>
+    <text x="947" y="315" fill="#53706b" font-size="13">Fictional demo</text>
+  </g>
+</svg>

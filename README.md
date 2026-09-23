@@ -1,64 +1,70 @@
+<p align="center">
+  <img src="assets/header.svg" alt="PaperCourt: put claims in front of evidence. A claimed five-point gain is only two points in the supplied results." width="100%">
+</p>
+
+<p align="center">
+  <a href="https://github.com/K-kiron/PaperCourt/actions/workflows/test.yml"><img src="https://github.com/K-kiron/PaperCourt/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-12675e" alt="MIT license"></a>
+  <a href="https://github.com/K-kiron/PaperCourt/releases"><img src="https://img.shields.io/github/v/release/K-kiron/PaperCourt" alt="Latest release"></a>
+</p>
+
 # PaperCourt
 
-**Put a paper's strongest claims in front of its evidence.**
+**An agent skill that traces empirical ML paper claims to inspectable evidence.**
 
-An installable skill for auditing empirical machine-learning papers. PaperCourt
-connects claims to exact source quotes and result rows, recomputes numbers,
-exposes changed comparison conditions, and proposes small tests that could
-falsify a claim. Every report separates script checks from model analysis.
+Give it Markdown, LaTeX, or extracted text plus CSV/JSON results. Get a report
+linking each claim to exact sources, repeatable checks, limitations, and a
+concrete experiment that could challenge it. Script checks and model analysis
+stay visibly separate. Missing evidence stays **unknown**.
 
-> **Abstract:** "Improves accuracy across all image datasets and compute budgets."
->
-> **Supplied evidence:** One dataset. One training budget.
->
-> **Next check:** A controlled low-budget comparison, with a predeclared outcome
-> that would contradict the universal claim.
+[See the report](demo/report.md) · [Install](#install) · [Try the demo](#try-the-demo) · [Case format](skills/papercourt/references/case-format.md) · [Releases](https://github.com/K-kiron/PaperCourt/releases)
 
-[Read the example report](demo/report.md) · [Open the skill](skills/papercourt/SKILL.md) · [Case format](skills/papercourt/references/case-format.md)
+## What an audit catches
 
-## Try the reproducible demo
+The abstract claims improvement everywhere. The evidence covers one dataset
+and one budget. PaperCourt makes that gap inspectable and proposes a controlled
+boundary test rather than a generic request for more experiments.
 
-Requires **Python 3.10+**. The helper uses only the standard library. No API key,
-package installation, or network access is needed to replay the example.
-
-From the downloaded or cloned repository:
-
-```text
-python skills/papercourt/scripts/papercourt.py audit examples/tiny-ml/case.json --out output/first-review
-```
-
-Open `output/first-review/report.html` in a browser. It is a standalone report
-with source links and highlighted evidence lines. The checked-in
-[HTML demonstration](demo/report.html) is the same format; download it or open
-it locally, since GitHub displays HTML source rather than executing it.
-
-| Paper claim | Script check | Model analysis |
+| Claim in the example | Evidence check | Assessment |
 | --- | --- | --- |
-| 82.0% accuracy in the stated setting | Consistent with the supplied aggregate | Supported within that scope |
-| 5.0 percentage-point gain | 82.0 − 80.0 = **2.0**, not 5.0 | Conflicting supplied evidence |
-| 2.0× faster under identical hardware | Ratio is 2.0; **CPU and GPU differ** | Confounded comparison |
-| Improvement across every dataset and budget | No automatic semantic judgment | Scope exceeds the one tested setting |
+| 82.0% accuracy in the stated setting | The supplied aggregate is 82.0 | Supported within scope |
+| A 5.0 percentage-point gain | 82.0 − 80.0 = **2.0** | Conflicting evidence |
+| 2.0× faster on identical hardware | 20 / 10 = 2.0; **CPU and GPU differ** | Comparison is limited |
+| Improvement across all datasets and budgets | Only one of each is supplied | Scope exceeds evidence |
 | Robustness under distribution shift | No shift result supplied | **Unknown**, not false |
-| 2.5% relative accuracy gain | 100 × (82 − 80) / 80 = **2.5%** | Supported for the stated setting |
+| A 2.5% relative gain | 100 × (82 − 80) / 80 = **2.5%** | Supported within scope |
 
-The example is original fictional teaching material under MIT, not a real
-experiment. Its prepared case replays a worked review; it does not demonstrate
-automatic claim extraction or improved review quality.
+The example is original, fictional MIT-licensed teaching material. Its numbers
+do not describe a real experiment or establish better review quality.
 
-## Install the skill in Codex
+## Install
 
-Install into the project containing your paper:
+From your paper project's directory, install with the
+[open skills CLI](https://github.com/vercel-labs/skills):
 
-```text
-python tools/install_skill.py --project "C:/path/to/paper-project"
+```sh
+npx skills@1.7.0 add K-kiron/PaperCourt --skill papercourt --agent codex
 ```
 
-The installer copies the self-contained `skills/papercourt` directory to
-`<project>/.agents/skills/papercourt`. It refuses to overwrite an existing skill
-and makes no global configuration changes. Alternatively, copy the folder to
-that location yourself. Back up an existing installation before replacing it.
+This targets the current project. The helper requires **Python 3.10+** and uses
+only the standard library. The CLI installer requires Node.js and network
+access; running an existing case requires neither.
 
-Open that project in Codex, then invoke:
+Alternatively, clone or download this repository and use the Python installer:
+
+```sh
+git clone https://github.com/K-kiron/PaperCourt.git
+cd PaperCourt
+python tools/install_skill.py --project "/path/to/paper-project"
+```
+
+On Windows, use a path such as `"C:/Research/my-paper"`. The Python installer
+copies the self-contained skill into `<project>/.agents/skills/papercourt` and
+refuses to overwrite an existing installation. It changes no global settings.
+The [standalone skill ZIP](https://github.com/K-kiron/PaperCourt/releases/latest)
+can also be extracted into that project's `.agents/skills/` directory.
+
+Open the paper project in Codex and invoke:
 
 ```text
 Use $papercourt to audit paper.md against results.csv and runtime.json.
@@ -66,89 +72,85 @@ Focus on the abstract's main empirical claims. Create a linked evidence
 report with minimal falsifying checks in a local review directory.
 ```
 
-Repository skill discovery follows the [official Codex skill locations](https://developers.openai.com/codex/skills).
-If it does not appear, restart the host. Project discovery was verified with
-Codex CLI 0.147.0 on Windows. A skill-guided workflow was also completed from
-raw example inputs. Other hosts and automatic skill selection have not been
-validated. The helper can be run directly without an agent host.
+Codex project discovery and a skill-guided workflow were verified on Windows.
+See [validation](docs/validation.md) for exact versions and scope. Other agent
+hosts and automatic skill selection have not been validated. You can use the
+Python helper directly without an agent host.
 
-## What you receive
+## Try the demo
 
-- **Claim → evidence → support → limitation → next check**, with exact paper
-  quotes, physical CSV lines, and JSON record pointers.
-- **Repeatable arithmetic:** values, differences, relative changes, ratios,
-  and unweighted means, with explicit absolute tolerances.
-- **Comparison checks:** dataset, split, metric, unit, protocol, and additional
-  controls selected by the reviewer. Missing controls stay unknown.
-- **Reviewable outputs:** Markdown, standalone HTML, and structured JSON.
-- **Replayable evidence:** SHA-256 hashes and byte-preserved inputs. Rerun the
-  case under a report's `inputs/` directory to reproduce its checks.
+From this repository, run:
 
-The agent reads the materials, selects claims, writes their evidence mapping,
-and supplies the semantic assessment. The Python helper checks those mappings
-and calculations. It does not automatically interpret a paper or certify that
-the mapping entails the claim. Every semantic assessment is labeled model
-analysis and includes a proposed check and observable falsifier.
-
-## Use your own evidence
-
-Supply Markdown, LaTeX source, or extracted plain text, together with CSV or a
-JSON array of result records. Keep sources inside the review case directory.
-The [case format](skills/papercourt/references/case-format.md) documents all
-required fields and gives a minimal example. You can author a case manually or
-have the skill prepare it from the supplied material.
-
-```text
-python skills/papercourt/scripts/papercourt.py audit path/to/case.json --out output/my-review
+```sh
+python skills/papercourt/scripts/papercourt.py audit examples/tiny-ml/case.json --out output/first-review
 ```
 
-Output directories must be new. A normal exit code of `0` means the report was
-created, not that all claims are supported. Add `--fail-on-inconsistency` to
-return `1` for a numeric discrepancy or differing selected conditions. Invalid
-inputs return `2`. Unknowns and semantic assessments do not trigger that flag.
+Open `output/first-review/report.html`. Click an evidence link to jump to its
+highlighted source line. No server or external assets are needed.
+
+| Output | Purpose |
+| --- | --- |
+| `report.html` | Standalone, clickable evidence report |
+| `report.md` + `evidence/` | Review in a repository or Markdown viewer |
+| `report.json` | Structured results for downstream tools |
+| `inputs/` | Byte-preserved case and sources for independent replay |
+
+The [checked-in report](demo/report.md) is browsable on GitHub. Download the
+[HTML report](demo/report.html) to view it locally. The prepared case replays a
+worked review; it does not perform fresh model analysis.
+
+## How it works
+
+1. **The skill maps the claims.** The host reads the supplied material, selects
+   important claims, and records exact quotes and source locations.
+2. **The helper recomputes the numbers.** Values, differences, ratios, relative
+   changes, and unweighted means are checked with explicit decimal tolerances.
+   Selected comparison controls are aligned, different, or unknown.
+3. **The report preserves the evidence.** Each model assessment states its
+   limitations and proposes a small next check with an observable falsifier.
+   Hashes and original inputs make the report replayable.
+
+Numeric mappings, units, tolerance choices, semantic assessments, and proposed
+experiments still need human review. Matching metadata does not prove that a
+comparison is fair or that a result is statistically significant.
+
+For your own material, use the [case format](skills/papercourt/references/case-format.md).
+Output directories must be new. Exit `0` means the report was created, not that
+all claims are supported. `--fail-on-inconsistency` returns `1` for numeric
+discrepancies or differing selected conditions. Invalid input returns `2`.
 
 ## Scope and privacy
 
-PaperCourt currently targets empirical ML papers. It does not parse arbitrary
-PDF layouts, resolve LaTeX includes, verify the literature, run experiments,
-execute supplied code, infer significance, or decide whether a paper is valid.
-JSON links identify the record pointer within a whole-file snapshot; precise
-JSON source-line extraction is not implemented. Matching selected metadata
-does not prove the absence of unrecorded confounders.
+PaperCourt targets empirical ML papers with locatable text and structured
+results. It does not parse arbitrary PDFs, resolve LaTeX includes, verify the
+literature, execute paper code, run experiments, or issue academic verdicts.
+JSON references identify a record pointer within a whole-file snapshot.
 
-The helper is local and makes no network calls. **Using a hosted agent still
-processes supplied text under that host's data policy.** The skill does not
-authorize additional uploads or publication. Reports copy all declared source
-files; keep private reviews outside public repositories and inspect their
-contents before sharing.
+The helper makes no network requests. **A hosted agent still processes supplied
+text under that host's data policy.** The skill does not authorize additional
+uploads or publication. Reports copy every declared source file; inspect them
+before sharing. No improvement in review accuracy or time savings has been
+established by the initial example.
 
-Missing evidence is not a refutation. Model assessments, numeric mappings,
-units, tolerance choices, and proposed experiments need human review. No claim
-of better review accuracy, time savings, or scientific validity has been
-established by this initial example.
+## Development and contributions
 
-## Verify the implementation
-
-```text
+```sh
 python -m unittest discover -s tests -v
+python tools/check_repository.py
 ```
 
-The suite covers real files and CLI behavior, including stale quotes, ambiguous
-rows, missing controls, exact decimal boundaries, malformed inputs, source
-replay, installation, HTML escaping, and link targets. See
-[validation notes](docs/validation.md) for the tested environment and limits.
-The CI matrix is configured for Windows and Linux with Python 3.10 and 3.12;
-remote CI has not yet run for this local release candidate.
+Tests cover actual files, failure cases, source replay, installation, and report
+links. CI runs on Windows and Linux with Python 3.10 and 3.12. Read
+[CONTRIBUTING.md](CONTRIBUTING.md) for examples, verification, and release builds;
+see [SECURITY.md](SECURITY.md) for safe reporting and [CHANGELOG.md](CHANGELOG.md)
+for release history.
 
-## Related work
+The repository presentation and distribution conventions were informed by
+[Anthropic Skills](https://github.com/anthropics/skills),
+[OpenAI Skills](https://github.com/openai/skills), and
+[Vercel Agent Skills](https://github.com/vercel-labs/agent-skills). The related
+[verify-claims workflow](https://github.com/ShaishavMaisuria/research-paper-lifecycle-skills/blob/main/skills/verify-claims/SKILL.md)
+also addresses paper claim review. PaperCourt's implementation, instructions,
+and examples are original; no upstream code or skill prose is copied.
 
-The [verify-claims skill in research-paper-lifecycle-skills](https://github.com/ShaishavMaisuria/research-paper-lifecycle-skills/blob/main/skills/verify-claims/SKILL.md)
-is a related claim-review workflow. PaperCourt focuses this first version on
-replayable numeric checks, inspectable source snapshots, explicit comparison
-conditions, and testable counterexamples. Its code, instructions, and teaching
-example are original; no implementation or skill text is copied from that project.
-
-## License
-
-[MIT](LICENSE), including the original fictional examples. Version 0.1.0 is a
-local release candidate; no public release or hosted service is implied.
+[MIT licensed](LICENSE), including the fictional examples.

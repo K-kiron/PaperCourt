@@ -15,4 +15,6 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python -m unittest discover -s tests -v
+      - run: python tools/check_repository.py
       - run: python skills/papercourt/scripts/papercourt.py audit examples/tiny-ml/case.json --out output/ci-demo
+      - run: python tools/build_release.py --out output/release
