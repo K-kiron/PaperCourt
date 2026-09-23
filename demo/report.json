@@ -1,0 +1,944 @@
+{
+  "version": "0.1.0",
+  "title": "A broad abstract meets one narrow experiment",
+  "case_sha256": "43b9117f8110ad27b01ff6c3bc447d03c8ab632176b6907a46399e73c30b1822",
+  "case_file": "case.json",
+  "claims": [
+    {
+      "id": "C1",
+      "statement": {
+        "source": "paper",
+        "start": 7,
+        "end": 7,
+        "excerpt": "Sprout improves classification accuracy across all image datasets and compute budgets.",
+        "quote": "Sprout improves classification accuracy across all image datasets and compute budgets."
+      },
+      "numeric": [],
+      "assessment": {
+        "status": "limited",
+        "reason": "The supplied evidence covers MiniShapes at 10 epochs. It cannot establish improvement across all image datasets and compute budgets.",
+        "evidence": [
+          {
+            "source": "paper",
+            "start": 16,
+            "end": 16,
+            "excerpt": "The only accuracy experiment uses MiniShapes, the test split, and 10 training epochs.",
+            "quote": "The only accuracy experiment uses MiniShapes, the test split, and 10 training epochs."
+          },
+          {
+            "source": "paper",
+            "start": 27,
+            "end": 27,
+            "excerpt": "No other dataset, compute budget, or distribution-shift evaluation is included in these materials.",
+            "quote": "No other dataset, compute budget, or distribution-shift evaluation is included in these materials."
+          },
+          {
+            "source": "results",
+            "selector": {
+              "id": "sprout"
+            },
+            "start": 2,
+            "end": 2,
+            "record": {
+              "id": "sprout",
+              "model": "Sprout",
+              "dataset": "MiniShapes",
+              "split": "test",
+              "metric": "accuracy",
+              "unit": "percent",
+              "protocol": "fixed-v1",
+              "budget": "10 epochs",
+              "seeds": "11|22|33",
+              "aggregation": "mean",
+              "value": "82.0"
+            },
+            "excerpt": "sprout,Sprout,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,82.0"
+          },
+          {
+            "source": "results",
+            "selector": {
+              "id": "linear"
+            },
+            "start": 3,
+            "end": 3,
+            "record": {
+              "id": "linear",
+              "model": "Linear",
+              "dataset": "MiniShapes",
+              "split": "test",
+              "metric": "accuracy",
+              "unit": "percent",
+              "protocol": "fixed-v1",
+              "budget": "10 epochs",
+              "seeds": "11|22|33",
+              "aggregation": "mean",
+              "value": "80.0"
+            },
+            "excerpt": "linear,Linear,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,80.0"
+          }
+        ],
+        "limitations": "No other dataset or training budget is supplied. This is a scope gap, not a demonstrated counterexample.",
+        "next_check": "At a predeclared 1-epoch budget on MiniShapes, compare Sprout and Linear with the same split, tuning budget, metric, and seeds; report the paired per-seed differences.",
+        "falsifier": "A controlled setting where Sprout has no positive mean accuracy difference would contradict the universal improvement claim.",
+        "origin": "model_analysis"
+      }
+    },
+    {
+      "id": "C2",
+      "statement": {
+        "source": "paper",
+        "start": 8,
+        "end": 8,
+        "excerpt": "On MiniShapes test data under the fixed 10-epoch protocol, Sprout reaches 82.0% accuracy.",
+        "quote": "On MiniShapes test data under the fixed 10-epoch protocol, Sprout reaches 82.0% accuracy."
+      },
+      "numeric": [
+        {
+          "operation": "value",
+          "expected": "82.0",
+          "tolerance": "0.05",
+          "unit": "percent",
+          "operands": [
+            {
+              "source": "results",
+              "selector": {
+                "id": "sprout"
+              },
+              "start": 2,
+              "end": 2,
+              "record": {
+                "id": "sprout",
+                "model": "Sprout",
+                "dataset": "MiniShapes",
+                "split": "test",
+                "metric": "accuracy",
+                "unit": "percent",
+                "protocol": "fixed-v1",
+                "budget": "10 epochs",
+                "seeds": "11|22|33",
+                "aggregation": "mean",
+                "value": "82.0"
+              },
+              "excerpt": "sprout,Sprout,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,82.0",
+              "field": "value",
+              "value": "82.0"
+            }
+          ],
+          "conditions": {
+            "status": "not_applicable",
+            "fields": {}
+          },
+          "status": "consistent",
+          "actual": "82.0",
+          "absolute_error": "0.0"
+        }
+      ],
+      "assessment": {
+        "status": "supported_within_scope",
+        "reason": "The qualified sentence matches the reported aggregate of 82.0% for the specified setting.",
+        "evidence": [
+          {
+            "source": "results",
+            "selector": {
+              "id": "sprout"
+            },
+            "start": 2,
+            "end": 2,
+            "record": {
+              "id": "sprout",
+              "model": "Sprout",
+              "dataset": "MiniShapes",
+              "split": "test",
+              "metric": "accuracy",
+              "unit": "percent",
+              "protocol": "fixed-v1",
+              "budget": "10 epochs",
+              "seeds": "11|22|33",
+              "aggregation": "mean",
+              "value": "82.0"
+            },
+            "excerpt": "sprout,Sprout,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,82.0"
+          },
+          {
+            "source": "paper",
+            "start": 17,
+            "end": 17,
+            "excerpt": "Both models use three seeds (11, 22, 33); results.csv contains their unweighted mean accuracies on a 0-100 scale.",
+            "quote": "Both models use three seeds (11, 22, 33); results.csv contains their unweighted mean accuracies on a 0-100 scale."
+          },
+          {
+            "source": "paper",
+            "start": 18,
+            "end": 18,
+            "excerpt": "The accuracy protocol is fixed-v1. No confidence interval or significance test is supplied.",
+            "quote": "The accuracy protocol is fixed-v1. No confidence interval or significance test is supplied."
+          }
+        ],
+        "limitations": "Only an aggregate is supplied. Neither individual seed scores nor statistical significance can be recovered.",
+        "next_check": "Recompute the unweighted mean from the three original evaluation logs under fixed-v1.",
+        "falsifier": "An independently recomputed mean outside 82.0 +/- 0.05 percentage points would conflict with the stated rounded value.",
+        "origin": "model_analysis"
+      }
+    },
+    {
+      "id": "C3",
+      "statement": {
+        "source": "paper",
+        "start": 9,
+        "end": 9,
+        "excerpt": "Under that protocol, Sprout exceeds Linear by 5.0 percentage points.",
+        "quote": "Under that protocol, Sprout exceeds Linear by 5.0 percentage points."
+      },
+      "numeric": [
+        {
+          "operation": "difference",
+          "expected": "5.0",
+          "tolerance": "0.05",
+          "unit": "percentage points",
+          "operands": [
+            {
+              "source": "results",
+              "selector": {
+                "id": "sprout"
+              },
+              "start": 2,
+              "end": 2,
+              "record": {
+                "id": "sprout",
+                "model": "Sprout",
+                "dataset": "MiniShapes",
+                "split": "test",
+                "metric": "accuracy",
+                "unit": "percent",
+                "protocol": "fixed-v1",
+                "budget": "10 epochs",
+                "seeds": "11|22|33",
+                "aggregation": "mean",
+                "value": "82.0"
+              },
+              "excerpt": "sprout,Sprout,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,82.0",
+              "field": "value",
+              "value": "82.0"
+            },
+            {
+              "source": "results",
+              "selector": {
+                "id": "linear"
+              },
+              "start": 3,
+              "end": 3,
+              "record": {
+                "id": "linear",
+                "model": "Linear",
+                "dataset": "MiniShapes",
+                "split": "test",
+                "metric": "accuracy",
+                "unit": "percent",
+                "protocol": "fixed-v1",
+                "budget": "10 epochs",
+                "seeds": "11|22|33",
+                "aggregation": "mean",
+                "value": "80.0"
+              },
+              "excerpt": "linear,Linear,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,80.0",
+              "field": "value",
+              "value": "80.0"
+            }
+          ],
+          "conditions": {
+            "status": "aligned",
+            "fields": {
+              "dataset": {
+                "status": "aligned",
+                "values": [
+                  "MiniShapes",
+                  "MiniShapes"
+                ]
+              },
+              "split": {
+                "status": "aligned",
+                "values": [
+                  "test",
+                  "test"
+                ]
+              },
+              "metric": {
+                "status": "aligned",
+                "values": [
+                  "accuracy",
+                  "accuracy"
+                ]
+              },
+              "unit": {
+                "status": "aligned",
+                "values": [
+                  "percent",
+                  "percent"
+                ]
+              },
+              "protocol": {
+                "status": "aligned",
+                "values": [
+                  "fixed-v1",
+                  "fixed-v1"
+                ]
+              },
+              "budget": {
+                "status": "aligned",
+                "values": [
+                  "10 epochs",
+                  "10 epochs"
+                ]
+              },
+              "seeds": {
+                "status": "aligned",
+                "values": [
+                  "11|22|33",
+                  "11|22|33"
+                ]
+              },
+              "aggregation": {
+                "status": "aligned",
+                "values": [
+                  "mean",
+                  "mean"
+                ]
+              }
+            }
+          },
+          "status": "inconsistent",
+          "actual": "2.0",
+          "absolute_error": "3.0"
+        }
+      ],
+      "assessment": {
+        "status": "conflicting_evidence",
+        "reason": "The supplied aggregates imply a 2.0 percentage-point difference, which conflicts with the quoted 5.0.",
+        "evidence": [
+          {
+            "source": "results",
+            "selector": {
+              "id": "sprout"
+            },
+            "start": 2,
+            "end": 2,
+            "record": {
+              "id": "sprout",
+              "model": "Sprout",
+              "dataset": "MiniShapes",
+              "split": "test",
+              "metric": "accuracy",
+              "unit": "percent",
+              "protocol": "fixed-v1",
+              "budget": "10 epochs",
+              "seeds": "11|22|33",
+              "aggregation": "mean",
+              "value": "82.0"
+            },
+            "excerpt": "sprout,Sprout,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,82.0"
+          },
+          {
+            "source": "results",
+            "selector": {
+              "id": "linear"
+            },
+            "start": 3,
+            "end": 3,
+            "record": {
+              "id": "linear",
+              "model": "Linear",
+              "dataset": "MiniShapes",
+              "split": "test",
+              "metric": "accuracy",
+              "unit": "percent",
+              "protocol": "fixed-v1",
+              "budget": "10 epochs",
+              "seeds": "11|22|33",
+              "aggregation": "mean",
+              "value": "80.0"
+            },
+            "excerpt": "linear,Linear,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,80.0"
+          }
+        ],
+        "limitations": "This checks agreement with supplied aggregates; it does not establish which version of the paper or results is authoritative.",
+        "next_check": "Reconcile the two aggregate values against the original evaluation logs and the manuscript version.",
+        "falsifier": "If the authoritative values remain 82.0 and 80.0, the 5.0-point statement is contradicted.",
+        "origin": "model_analysis"
+      }
+    },
+    {
+      "id": "C4",
+      "statement": {
+        "source": "paper",
+        "start": 10,
+        "end": 10,
+        "excerpt": "Under identical hardware and batch settings, Sprout is 2.0 times faster than Linear.",
+        "quote": "Under identical hardware and batch settings, Sprout is 2.0 times faster than Linear."
+      },
+      "numeric": [
+        {
+          "operation": "ratio",
+          "expected": "2.0",
+          "tolerance": "0.01",
+          "unit": "times",
+          "operands": [
+            {
+              "source": "runtime",
+              "selector": {
+                "id": "linear"
+              },
+              "start": 1,
+              "end": 28,
+              "pointer": "/1",
+              "record": {
+                "id": "linear",
+                "model": "Linear",
+                "dataset": "MiniShapes",
+                "split": "test",
+                "metric": "latency",
+                "unit": "milliseconds",
+                "protocol": "timing-v1",
+                "hardware": "CPU",
+                "batch_size": 64,
+                "precision": "FP32",
+                "value": 20
+              },
+              "excerpt": "[\n  {\n    \"id\": \"sprout\",\n    \"model\": \"Sprout\",\n    \"dataset\": \"MiniShapes\",\n    \"split\": \"test\",\n    \"metric\": \"latency\",\n    \"unit\": \"milliseconds\",\n    \"protocol\": \"timing-v1\",\n    \"hardware\": \"GPU\",\n    \"batch_size\": 64,\n    \"precision\": \"FP32\",\n    \"value\": 10\n  },\n  {\n    \"id\": \"linear\",\n    \"model\": \"Linear\",\n    \"dataset\": \"MiniShapes\",\n    \"split\": \"test\",\n    \"metric\": \"latency\",\n    \"unit\": \"milliseconds\",\n    \"protocol\": \"timing-v1\",\n    \"hardware\": \"CPU\",\n    \"batch_size\": 64,\n    \"precision\": \"FP32\",\n    \"value\": 20\n  }\n]",
+              "field": "value",
+              "value": 20
+            },
+            {
+              "source": "runtime",
+              "selector": {
+                "id": "sprout"
+              },
+              "start": 1,
+              "end": 28,
+              "pointer": "/0",
+              "record": {
+                "id": "sprout",
+                "model": "Sprout",
+                "dataset": "MiniShapes",
+                "split": "test",
+                "metric": "latency",
+                "unit": "milliseconds",
+                "protocol": "timing-v1",
+                "hardware": "GPU",
+                "batch_size": 64,
+                "precision": "FP32",
+                "value": 10
+              },
+              "excerpt": "[\n  {\n    \"id\": \"sprout\",\n    \"model\": \"Sprout\",\n    \"dataset\": \"MiniShapes\",\n    \"split\": \"test\",\n    \"metric\": \"latency\",\n    \"unit\": \"milliseconds\",\n    \"protocol\": \"timing-v1\",\n    \"hardware\": \"GPU\",\n    \"batch_size\": 64,\n    \"precision\": \"FP32\",\n    \"value\": 10\n  },\n  {\n    \"id\": \"linear\",\n    \"model\": \"Linear\",\n    \"dataset\": \"MiniShapes\",\n    \"split\": \"test\",\n    \"metric\": \"latency\",\n    \"unit\": \"milliseconds\",\n    \"protocol\": \"timing-v1\",\n    \"hardware\": \"CPU\",\n    \"batch_size\": 64,\n    \"precision\": \"FP32\",\n    \"value\": 20\n  }\n]",
+              "field": "value",
+              "value": 10
+            }
+          ],
+          "conditions": {
+            "status": "different",
+            "fields": {
+              "dataset": {
+                "status": "aligned",
+                "values": [
+                  "MiniShapes",
+                  "MiniShapes"
+                ]
+              },
+              "split": {
+                "status": "aligned",
+                "values": [
+                  "test",
+                  "test"
+                ]
+              },
+              "metric": {
+                "status": "aligned",
+                "values": [
+                  "latency",
+                  "latency"
+                ]
+              },
+              "unit": {
+                "status": "aligned",
+                "values": [
+                  "milliseconds",
+                  "milliseconds"
+                ]
+              },
+              "protocol": {
+                "status": "aligned",
+                "values": [
+                  "timing-v1",
+                  "timing-v1"
+                ]
+              },
+              "hardware": {
+                "status": "different",
+                "values": [
+                  "CPU",
+                  "GPU"
+                ]
+              },
+              "batch_size": {
+                "status": "aligned",
+                "values": [
+                  64,
+                  64
+                ]
+              },
+              "precision": {
+                "status": "aligned",
+                "values": [
+                  "FP32",
+                  "FP32"
+                ]
+              }
+            }
+          },
+          "status": "consistent",
+          "actual": "2",
+          "absolute_error": "0.0"
+        }
+      ],
+      "assessment": {
+        "status": "limited",
+        "reason": "The arithmetic ratio is 2.0, but the timing rows use different hardware. The identical-hardware premise conflicts with the recorded settings.",
+        "evidence": [
+          {
+            "source": "runtime",
+            "selector": {
+              "id": "sprout"
+            },
+            "start": 1,
+            "end": 28,
+            "pointer": "/0",
+            "record": {
+              "id": "sprout",
+              "model": "Sprout",
+              "dataset": "MiniShapes",
+              "split": "test",
+              "metric": "latency",
+              "unit": "milliseconds",
+              "protocol": "timing-v1",
+              "hardware": "GPU",
+              "batch_size": 64,
+              "precision": "FP32",
+              "value": 10
+            },
+            "excerpt": "[\n  {\n    \"id\": \"sprout\",\n    \"model\": \"Sprout\",\n    \"dataset\": \"MiniShapes\",\n    \"split\": \"test\",\n    \"metric\": \"latency\",\n    \"unit\": \"milliseconds\",\n    \"protocol\": \"timing-v1\",\n    \"hardware\": \"GPU\",\n    \"batch_size\": 64,\n    \"precision\": \"FP32\",\n    \"value\": 10\n  },\n  {\n    \"id\": \"linear\",\n    \"model\": \"Linear\",\n    \"dataset\": \"MiniShapes\",\n    \"split\": \"test\",\n    \"metric\": \"latency\",\n    \"unit\": \"milliseconds\",\n    \"protocol\": \"timing-v1\",\n    \"hardware\": \"CPU\",\n    \"batch_size\": 64,\n    \"precision\": \"FP32\",\n    \"value\": 20\n  }\n]"
+          },
+          {
+            "source": "runtime",
+            "selector": {
+              "id": "linear"
+            },
+            "start": 1,
+            "end": 28,
+            "pointer": "/1",
+            "record": {
+              "id": "linear",
+              "model": "Linear",
+              "dataset": "MiniShapes",
+              "split": "test",
+              "metric": "latency",
+              "unit": "milliseconds",
+              "protocol": "timing-v1",
+              "hardware": "CPU",
+              "batch_size": 64,
+              "precision": "FP32",
+              "value": 20
+            },
+            "excerpt": "[\n  {\n    \"id\": \"sprout\",\n    \"model\": \"Sprout\",\n    \"dataset\": \"MiniShapes\",\n    \"split\": \"test\",\n    \"metric\": \"latency\",\n    \"unit\": \"milliseconds\",\n    \"protocol\": \"timing-v1\",\n    \"hardware\": \"GPU\",\n    \"batch_size\": 64,\n    \"precision\": \"FP32\",\n    \"value\": 10\n  },\n  {\n    \"id\": \"linear\",\n    \"model\": \"Linear\",\n    \"dataset\": \"MiniShapes\",\n    \"split\": \"test\",\n    \"metric\": \"latency\",\n    \"unit\": \"milliseconds\",\n    \"protocol\": \"timing-v1\",\n    \"hardware\": \"CPU\",\n    \"batch_size\": 64,\n    \"precision\": \"FP32\",\n    \"value\": 20\n  }\n]"
+          },
+          {
+            "source": "paper",
+            "start": 23,
+            "end": 23,
+            "excerpt": "Sprout was timed on a GPU and Linear on a CPU, both at batch size 64 and FP32.",
+            "quote": "Sprout was timed on a GPU and Linear on a CPU, both at batch size 64 and FP32."
+          }
+        ],
+        "limitations": "There is only one timing observation per model. Hardware is a confounder and variance is unavailable.",
+        "next_check": "Time both models on the same device at batch 64 and FP32, using the same warmup, synchronization, and repeated-run protocol.",
+        "falsifier": "A controlled baseline/method median time ratio below 2.0 would challenge the claimed twofold speed advantage.",
+        "origin": "model_analysis"
+      }
+    },
+    {
+      "id": "C5",
+      "statement": {
+        "source": "paper",
+        "start": 11,
+        "end": 11,
+        "excerpt": "Sprout remains accurate under distribution shift.",
+        "quote": "Sprout remains accurate under distribution shift."
+      },
+      "numeric": [],
+      "assessment": {
+        "status": "unknown",
+        "reason": "No distribution-shift evaluation is supplied. The absence does not establish that Sprout fails under shift.",
+        "evidence": [
+          {
+            "source": "paper",
+            "start": 27,
+            "end": 27,
+            "excerpt": "No other dataset, compute budget, or distribution-shift evaluation is included in these materials.",
+            "quote": "No other dataset, compute budget, or distribution-shift evaluation is included in these materials."
+          }
+        ],
+        "limitations": "The claim does not define the shift or what counts as remaining accurate.",
+        "next_check": "Predeclare a concrete shift, such as a fixed blur corruption, and an accuracy-retention threshold; evaluate both clean and shifted MiniShapes test inputs.",
+        "falsifier": "Retention below the predeclared threshold would challenge the operationalized robustness claim; no threshold or result is asserted here.",
+        "origin": "model_analysis"
+      }
+    },
+    {
+      "id": "C6",
+      "statement": {
+        "source": "paper",
+        "start": 12,
+        "end": 12,
+        "excerpt": "The in-distribution accuracy gain over Linear is 2.5% relative.",
+        "quote": "The in-distribution accuracy gain over Linear is 2.5% relative."
+      },
+      "numeric": [
+        {
+          "operation": "relative_change",
+          "expected": "2.5",
+          "tolerance": "0.05",
+          "unit": "percent relative",
+          "operands": [
+            {
+              "source": "results",
+              "selector": {
+                "id": "sprout"
+              },
+              "start": 2,
+              "end": 2,
+              "record": {
+                "id": "sprout",
+                "model": "Sprout",
+                "dataset": "MiniShapes",
+                "split": "test",
+                "metric": "accuracy",
+                "unit": "percent",
+                "protocol": "fixed-v1",
+                "budget": "10 epochs",
+                "seeds": "11|22|33",
+                "aggregation": "mean",
+                "value": "82.0"
+              },
+              "excerpt": "sprout,Sprout,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,82.0",
+              "field": "value",
+              "value": "82.0"
+            },
+            {
+              "source": "results",
+              "selector": {
+                "id": "linear"
+              },
+              "start": 3,
+              "end": 3,
+              "record": {
+                "id": "linear",
+                "model": "Linear",
+                "dataset": "MiniShapes",
+                "split": "test",
+                "metric": "accuracy",
+                "unit": "percent",
+                "protocol": "fixed-v1",
+                "budget": "10 epochs",
+                "seeds": "11|22|33",
+                "aggregation": "mean",
+                "value": "80.0"
+              },
+              "excerpt": "linear,Linear,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,80.0",
+              "field": "value",
+              "value": "80.0"
+            }
+          ],
+          "conditions": {
+            "status": "aligned",
+            "fields": {
+              "dataset": {
+                "status": "aligned",
+                "values": [
+                  "MiniShapes",
+                  "MiniShapes"
+                ]
+              },
+              "split": {
+                "status": "aligned",
+                "values": [
+                  "test",
+                  "test"
+                ]
+              },
+              "metric": {
+                "status": "aligned",
+                "values": [
+                  "accuracy",
+                  "accuracy"
+                ]
+              },
+              "unit": {
+                "status": "aligned",
+                "values": [
+                  "percent",
+                  "percent"
+                ]
+              },
+              "protocol": {
+                "status": "aligned",
+                "values": [
+                  "fixed-v1",
+                  "fixed-v1"
+                ]
+              },
+              "budget": {
+                "status": "aligned",
+                "values": [
+                  "10 epochs",
+                  "10 epochs"
+                ]
+              },
+              "seeds": {
+                "status": "aligned",
+                "values": [
+                  "11|22|33",
+                  "11|22|33"
+                ]
+              },
+              "aggregation": {
+                "status": "aligned",
+                "values": [
+                  "mean",
+                  "mean"
+                ]
+              }
+            }
+          },
+          "status": "consistent",
+          "actual": "2.500",
+          "absolute_error": "0.000"
+        }
+      ],
+      "assessment": {
+        "status": "supported_within_scope",
+        "reason": "The supplied accuracy aggregates imply a 2.5% relative increase over Linear in the described in-distribution setting.",
+        "evidence": [
+          {
+            "source": "results",
+            "selector": {
+              "id": "sprout"
+            },
+            "start": 2,
+            "end": 2,
+            "record": {
+              "id": "sprout",
+              "model": "Sprout",
+              "dataset": "MiniShapes",
+              "split": "test",
+              "metric": "accuracy",
+              "unit": "percent",
+              "protocol": "fixed-v1",
+              "budget": "10 epochs",
+              "seeds": "11|22|33",
+              "aggregation": "mean",
+              "value": "82.0"
+            },
+            "excerpt": "sprout,Sprout,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,82.0"
+          },
+          {
+            "source": "results",
+            "selector": {
+              "id": "linear"
+            },
+            "start": 3,
+            "end": 3,
+            "record": {
+              "id": "linear",
+              "model": "Linear",
+              "dataset": "MiniShapes",
+              "split": "test",
+              "metric": "accuracy",
+              "unit": "percent",
+              "protocol": "fixed-v1",
+              "budget": "10 epochs",
+              "seeds": "11|22|33",
+              "aggregation": "mean",
+              "value": "80.0"
+            },
+            "excerpt": "linear,Linear,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,80.0"
+          },
+          {
+            "source": "paper",
+            "start": 16,
+            "end": 16,
+            "excerpt": "The only accuracy experiment uses MiniShapes, the test split, and 10 training epochs.",
+            "quote": "The only accuracy experiment uses MiniShapes, the test split, and 10 training epochs."
+          }
+        ],
+        "limitations": "This relative arithmetic does not establish statistical significance or generalization.",
+        "next_check": "Recompute both means from the original per-seed logs, preserving the same split and protocol.",
+        "falsifier": "A recomputed relative increase outside 2.5 +/- 0.05 percent would conflict with the rounded claim.",
+        "origin": "model_analysis"
+      }
+    }
+  ],
+  "sources": {
+    "paper": {
+      "path": "paper.md",
+      "sha256": "b4025f859bda98e3ee0c90077f248481fabd5b6fe28c4eb7190d57ff223ae43d",
+      "text": "# Sprout: A Tiny Classification Study\n\nThis is an original fictional teaching example, not a published paper or an experimental result.\n\n## Abstract\n\nSprout improves classification accuracy across all image datasets and compute budgets.\nOn MiniShapes test data under the fixed 10-epoch protocol, Sprout reaches 82.0% accuracy.\nUnder that protocol, Sprout exceeds Linear by 5.0 percentage points.\nUnder identical hardware and batch settings, Sprout is 2.0 times faster than Linear.\nSprout remains accurate under distribution shift.\nThe in-distribution accuracy gain over Linear is 2.5% relative.\n\n## Experiment\n\nThe only accuracy experiment uses MiniShapes, the test split, and 10 training epochs.\nBoth models use three seeds (11, 22, 33); results.csv contains their unweighted mean accuracies on a 0-100 scale.\nThe accuracy protocol is fixed-v1. No confidence interval or significance test is supplied.\n\n## Timing\n\nruntime.json records one timing observation per model; preprocessing time is excluded.\nSprout was timed on a GPU and Linear on a CPU, both at batch size 64 and FP32.\n\n## Limitations\n\nNo other dataset, compute budget, or distribution-shift evaluation is included in these materials.\n",
+      "lines": [
+        "# Sprout: A Tiny Classification Study",
+        "",
+        "This is an original fictional teaching example, not a published paper or an experimental result.",
+        "",
+        "## Abstract",
+        "",
+        "Sprout improves classification accuracy across all image datasets and compute budgets.",
+        "On MiniShapes test data under the fixed 10-epoch protocol, Sprout reaches 82.0% accuracy.",
+        "Under that protocol, Sprout exceeds Linear by 5.0 percentage points.",
+        "Under identical hardware and batch settings, Sprout is 2.0 times faster than Linear.",
+        "Sprout remains accurate under distribution shift.",
+        "The in-distribution accuracy gain over Linear is 2.5% relative.",
+        "",
+        "## Experiment",
+        "",
+        "The only accuracy experiment uses MiniShapes, the test split, and 10 training epochs.",
+        "Both models use three seeds (11, 22, 33); results.csv contains their unweighted mean accuracies on a 0-100 scale.",
+        "The accuracy protocol is fixed-v1. No confidence interval or significance test is supplied.",
+        "",
+        "## Timing",
+        "",
+        "runtime.json records one timing observation per model; preprocessing time is excluded.",
+        "Sprout was timed on a GPU and Linear on a CPU, both at batch size 64 and FP32.",
+        "",
+        "## Limitations",
+        "",
+        "No other dataset, compute budget, or distribution-shift evaluation is included in these materials."
+      ],
+      "rows": null
+    },
+    "results": {
+      "path": "results.csv",
+      "sha256": "02aa99aa74b7e2564a29d1b1e4c22e560ece2cf92c9face1f2a92d2214c71d65",
+      "text": "id,model,dataset,split,metric,unit,protocol,budget,seeds,aggregation,value\nsprout,Sprout,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,82.0\nlinear,Linear,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,80.0\n",
+      "lines": [
+        "id,model,dataset,split,metric,unit,protocol,budget,seeds,aggregation,value",
+        "sprout,Sprout,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,82.0",
+        "linear,Linear,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,80.0"
+      ],
+      "rows": [
+        {
+          "data": {
+            "id": "sprout",
+            "model": "Sprout",
+            "dataset": "MiniShapes",
+            "split": "test",
+            "metric": "accuracy",
+            "unit": "percent",
+            "protocol": "fixed-v1",
+            "budget": "10 epochs",
+            "seeds": "11|22|33",
+            "aggregation": "mean",
+            "value": "82.0"
+          },
+          "start": 2,
+          "end": 2
+        },
+        {
+          "data": {
+            "id": "linear",
+            "model": "Linear",
+            "dataset": "MiniShapes",
+            "split": "test",
+            "metric": "accuracy",
+            "unit": "percent",
+            "protocol": "fixed-v1",
+            "budget": "10 epochs",
+            "seeds": "11|22|33",
+            "aggregation": "mean",
+            "value": "80.0"
+          },
+          "start": 3,
+          "end": 3
+        }
+      ]
+    },
+    "runtime": {
+      "path": "runtime.json",
+      "sha256": "0b5ddefa6641e019ad22c45028774cf2c3a0e9861a2337c40bf2d88d2c679b6b",
+      "text": "[\n  {\n    \"id\": \"sprout\",\n    \"model\": \"Sprout\",\n    \"dataset\": \"MiniShapes\",\n    \"split\": \"test\",\n    \"metric\": \"latency\",\n    \"unit\": \"milliseconds\",\n    \"protocol\": \"timing-v1\",\n    \"hardware\": \"GPU\",\n    \"batch_size\": 64,\n    \"precision\": \"FP32\",\n    \"value\": 10\n  },\n  {\n    \"id\": \"linear\",\n    \"model\": \"Linear\",\n    \"dataset\": \"MiniShapes\",\n    \"split\": \"test\",\n    \"metric\": \"latency\",\n    \"unit\": \"milliseconds\",\n    \"protocol\": \"timing-v1\",\n    \"hardware\": \"CPU\",\n    \"batch_size\": 64,\n    \"precision\": \"FP32\",\n    \"value\": 20\n  }\n]\n",
+      "lines": [
+        "[",
+        "  {",
+        "    \"id\": \"sprout\",",
+        "    \"model\": \"Sprout\",",
+        "    \"dataset\": \"MiniShapes\",",
+        "    \"split\": \"test\",",
+        "    \"metric\": \"latency\",",
+        "    \"unit\": \"milliseconds\",",
+        "    \"protocol\": \"timing-v1\",",
+        "    \"hardware\": \"GPU\",",
+        "    \"batch_size\": 64,",
+        "    \"precision\": \"FP32\",",
+        "    \"value\": 10",
+        "  },",
+        "  {",
+        "    \"id\": \"linear\",",
+        "    \"model\": \"Linear\",",
+        "    \"dataset\": \"MiniShapes\",",
+        "    \"split\": \"test\",",
+        "    \"metric\": \"latency\",",
+        "    \"unit\": \"milliseconds\",",
+        "    \"protocol\": \"timing-v1\",",
+        "    \"hardware\": \"CPU\",",
+        "    \"batch_size\": 64,",
+        "    \"precision\": \"FP32\",",
+        "    \"value\": 20",
+        "  }",
+        "]"
+      ],
+      "rows": [
+        {
+          "data": {
+            "id": "sprout",
+            "model": "Sprout",
+            "dataset": "MiniShapes",
+            "split": "test",
+            "metric": "latency",
+            "unit": "milliseconds",
+            "protocol": "timing-v1",
+            "hardware": "GPU",
+            "batch_size": 64,
+            "precision": "FP32",
+            "value": 10
+          },
+          "start": 1,
+          "end": 28,
+          "pointer": "/0"
+        },
+        {
+          "data": {
+            "id": "linear",
+            "model": "Linear",
+            "dataset": "MiniShapes",
+            "split": "test",
+            "metric": "latency",
+            "unit": "milliseconds",
+            "protocol": "timing-v1",
+            "hardware": "CPU",
+            "batch_size": 64,
+            "precision": "FP32",
+            "value": 20
+          },
+          "start": 1,
+          "end": 28,
+          "pointer": "/1"
+        }
+      ]
+    }
+  }
+}

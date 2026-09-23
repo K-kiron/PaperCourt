@@ -1,0 +1,3 @@
+id,model,dataset,split,metric,unit,protocol,budget,seeds,aggregation,value
+sprout,Sprout,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,82.0
+linear,Linear,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,80.0

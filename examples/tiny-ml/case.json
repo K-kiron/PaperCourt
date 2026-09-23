@@ -1,0 +1,337 @@
+{
+  "version": 1,
+  "title": "A broad abstract meets one narrow experiment",
+  "sources": {
+    "paper": "paper.md",
+    "results": "results.csv",
+    "runtime": "runtime.json"
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "statement": {
+        "source": "paper",
+        "start": 7,
+        "end": 7,
+        "quote": "Sprout improves classification accuracy across all image datasets and compute budgets."
+      },
+      "numeric": [],
+      "assessment": {
+        "status": "limited",
+        "reason": "The supplied evidence covers MiniShapes at 10 epochs. It cannot establish improvement across all image datasets and compute budgets.",
+        "evidence": [
+          {
+            "source": "paper",
+            "start": 16,
+            "end": 16,
+            "quote": "The only accuracy experiment uses MiniShapes, the test split, and 10 training epochs."
+          },
+          {
+            "source": "paper",
+            "start": 27,
+            "end": 27,
+            "quote": "No other dataset, compute budget, or distribution-shift evaluation is included in these materials."
+          },
+          {
+            "source": "results",
+            "row": {
+              "id": "sprout"
+            }
+          },
+          {
+            "source": "results",
+            "row": {
+              "id": "linear"
+            }
+          }
+        ],
+        "limitations": "No other dataset or training budget is supplied. This is a scope gap, not a demonstrated counterexample.",
+        "next_check": "At a predeclared 1-epoch budget on MiniShapes, compare Sprout and Linear with the same split, tuning budget, metric, and seeds; report the paired per-seed differences.",
+        "falsifier": "A controlled setting where Sprout has no positive mean accuracy difference would contradict the universal improvement claim."
+      }
+    },
+    {
+      "id": "C2",
+      "statement": {
+        "source": "paper",
+        "start": 8,
+        "end": 8,
+        "quote": "On MiniShapes test data under the fixed 10-epoch protocol, Sprout reaches 82.0% accuracy."
+      },
+      "numeric": [
+        {
+          "operation": "value",
+          "operands": [
+            {
+              "source": "results",
+              "row": {
+                "id": "sprout"
+              },
+              "field": "value"
+            }
+          ],
+          "expected": "82.0",
+          "tolerance": "0.05",
+          "unit": "percent",
+          "conditions": []
+        }
+      ],
+      "assessment": {
+        "status": "supported_within_scope",
+        "reason": "The qualified sentence matches the reported aggregate of 82.0% for the specified setting.",
+        "evidence": [
+          {
+            "source": "results",
+            "row": {
+              "id": "sprout"
+            }
+          },
+          {
+            "source": "paper",
+            "start": 17,
+            "end": 17,
+            "quote": "Both models use three seeds (11, 22, 33); results.csv contains their unweighted mean accuracies on a 0-100 scale."
+          },
+          {
+            "source": "paper",
+            "start": 18,
+            "end": 18,
+            "quote": "The accuracy protocol is fixed-v1. No confidence interval or significance test is supplied."
+          }
+        ],
+        "limitations": "Only an aggregate is supplied. Neither individual seed scores nor statistical significance can be recovered.",
+        "next_check": "Recompute the unweighted mean from the three original evaluation logs under fixed-v1.",
+        "falsifier": "An independently recomputed mean outside 82.0 +/- 0.05 percentage points would conflict with the stated rounded value."
+      }
+    },
+    {
+      "id": "C3",
+      "statement": {
+        "source": "paper",
+        "start": 9,
+        "end": 9,
+        "quote": "Under that protocol, Sprout exceeds Linear by 5.0 percentage points."
+      },
+      "numeric": [
+        {
+          "operation": "difference",
+          "operands": [
+            {
+              "source": "results",
+              "row": {
+                "id": "sprout"
+              },
+              "field": "value"
+            },
+            {
+              "source": "results",
+              "row": {
+                "id": "linear"
+              },
+              "field": "value"
+            }
+          ],
+          "expected": "5.0",
+          "tolerance": "0.05",
+          "unit": "percentage points",
+          "conditions": [
+            "dataset",
+            "split",
+            "metric",
+            "unit",
+            "protocol",
+            "budget",
+            "seeds",
+            "aggregation"
+          ]
+        }
+      ],
+      "assessment": {
+        "status": "conflicting_evidence",
+        "reason": "The supplied aggregates imply a 2.0 percentage-point difference, which conflicts with the quoted 5.0.",
+        "evidence": [
+          {
+            "source": "results",
+            "row": {
+              "id": "sprout"
+            }
+          },
+          {
+            "source": "results",
+            "row": {
+              "id": "linear"
+            }
+          }
+        ],
+        "limitations": "This checks agreement with supplied aggregates; it does not establish which version of the paper or results is authoritative.",
+        "next_check": "Reconcile the two aggregate values against the original evaluation logs and the manuscript version.",
+        "falsifier": "If the authoritative values remain 82.0 and 80.0, the 5.0-point statement is contradicted."
+      }
+    },
+    {
+      "id": "C4",
+      "statement": {
+        "source": "paper",
+        "start": 10,
+        "end": 10,
+        "quote": "Under identical hardware and batch settings, Sprout is 2.0 times faster than Linear."
+      },
+      "numeric": [
+        {
+          "operation": "ratio",
+          "operands": [
+            {
+              "source": "runtime",
+              "row": {
+                "id": "linear"
+              },
+              "field": "value"
+            },
+            {
+              "source": "runtime",
+              "row": {
+                "id": "sprout"
+              },
+              "field": "value"
+            }
+          ],
+          "expected": "2.0",
+          "tolerance": "0.01",
+          "unit": "times",
+          "conditions": [
+            "dataset",
+            "split",
+            "metric",
+            "unit",
+            "protocol",
+            "hardware",
+            "batch_size",
+            "precision"
+          ]
+        }
+      ],
+      "assessment": {
+        "status": "limited",
+        "reason": "The arithmetic ratio is 2.0, but the timing rows use different hardware. The identical-hardware premise conflicts with the recorded settings.",
+        "evidence": [
+          {
+            "source": "runtime",
+            "row": {
+              "id": "sprout"
+            }
+          },
+          {
+            "source": "runtime",
+            "row": {
+              "id": "linear"
+            }
+          },
+          {
+            "source": "paper",
+            "start": 23,
+            "end": 23,
+            "quote": "Sprout was timed on a GPU and Linear on a CPU, both at batch size 64 and FP32."
+          }
+        ],
+        "limitations": "There is only one timing observation per model. Hardware is a confounder and variance is unavailable.",
+        "next_check": "Time both models on the same device at batch 64 and FP32, using the same warmup, synchronization, and repeated-run protocol.",
+        "falsifier": "A controlled baseline/method median time ratio below 2.0 would challenge the claimed twofold speed advantage."
+      }
+    },
+    {
+      "id": "C5",
+      "statement": {
+        "source": "paper",
+        "start": 11,
+        "end": 11,
+        "quote": "Sprout remains accurate under distribution shift."
+      },
+      "numeric": [],
+      "assessment": {
+        "status": "unknown",
+        "reason": "No distribution-shift evaluation is supplied. The absence does not establish that Sprout fails under shift.",
+        "evidence": [
+          {
+            "source": "paper",
+            "start": 27,
+            "end": 27,
+            "quote": "No other dataset, compute budget, or distribution-shift evaluation is included in these materials."
+          }
+        ],
+        "limitations": "The claim does not define the shift or what counts as remaining accurate.",
+        "next_check": "Predeclare a concrete shift, such as a fixed blur corruption, and an accuracy-retention threshold; evaluate both clean and shifted MiniShapes test inputs.",
+        "falsifier": "Retention below the predeclared threshold would challenge the operationalized robustness claim; no threshold or result is asserted here."
+      }
+    },
+    {
+      "id": "C6",
+      "statement": {
+        "source": "paper",
+        "start": 12,
+        "end": 12,
+        "quote": "The in-distribution accuracy gain over Linear is 2.5% relative."
+      },
+      "numeric": [
+        {
+          "operation": "relative_change",
+          "operands": [
+            {
+              "source": "results",
+              "row": {
+                "id": "sprout"
+              },
+              "field": "value"
+            },
+            {
+              "source": "results",
+              "row": {
+                "id": "linear"
+              },
+              "field": "value"
+            }
+          ],
+          "expected": "2.5",
+          "tolerance": "0.05",
+          "unit": "percent relative",
+          "conditions": [
+            "dataset",
+            "split",
+            "metric",
+            "unit",
+            "protocol",
+            "budget",
+            "seeds",
+            "aggregation"
+          ]
+        }
+      ],
+      "assessment": {
+        "status": "supported_within_scope",
+        "reason": "The supplied accuracy aggregates imply a 2.5% relative increase over Linear in the described in-distribution setting.",
+        "evidence": [
+          {
+            "source": "results",
+            "row": {
+              "id": "sprout"
+            }
+          },
+          {
+            "source": "results",
+            "row": {
+              "id": "linear"
+            }
+          },
+          {
+            "source": "paper",
+            "start": 16,
+            "end": 16,
+            "quote": "The only accuracy experiment uses MiniShapes, the test split, and 10 training epochs."
+          }
+        ],
+        "limitations": "This relative arithmetic does not establish statistical significance or generalization.",
+        "next_check": "Recompute both means from the original per-seed logs, preserving the same split and protocol.",
+        "falsifier": "A recomputed relative increase outside 2.5 +/- 0.05 percent would conflict with the rounded claim."
+      }
+    }
+  ]
+}

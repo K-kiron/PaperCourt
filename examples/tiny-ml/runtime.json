@@ -1,0 +1,28 @@
+[
+  {
+    "id": "sprout",
+    "model": "Sprout",
+    "dataset": "MiniShapes",
+    "split": "test",
+    "metric": "latency",
+    "unit": "milliseconds",
+    "protocol": "timing-v1",
+    "hardware": "GPU",
+    "batch_size": 64,
+    "precision": "FP32",
+    "value": 10
+  },
+  {
+    "id": "linear",
+    "model": "Linear",
+    "dataset": "MiniShapes",
+    "split": "test",
+    "metric": "latency",
+    "unit": "milliseconds",
+    "protocol": "timing-v1",
+    "hardware": "CPU",
+    "batch_size": 64,
+    "precision": "FP32",
+    "value": 20
+  }
+]

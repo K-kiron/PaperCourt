@@ -1,0 +1,4 @@
+interface:
+  display_name: "PaperCourt"
+  short_description: "Trace paper claims to evidence and testable gaps"
+  default_prompt: "Use $papercourt to audit this machine-learning paper against the supplied results and create a linked evidence report with minimal falsifying checks."

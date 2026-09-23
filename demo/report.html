@@ -1,0 +1,224 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'">
+<title>A broad abstract meets one narrow experiment | PaperCourt</title><style>
+:root{color-scheme:light;--ink:#17252a;--muted:#496069;--line:#c9d8d6;--accent:#12675e}
+*{box-sizing:border-box}body{margin:0;background:#f4f6f2;color:var(--ink);font:16px/1.6 system-ui,sans-serif}
+main{max-width:1120px;margin:auto;padding:48px 28px}header{border-top:6px solid var(--accent);padding:24px 0}
+h1{font-size:clamp(30px,5vw,52px);line-height:1.12;max-width:880px;margin:14px 0}h2{margin-top:0}
+a{color:var(--accent);overflow-wrap:anywhere}a:focus-visible{outline:3px solid #ab552a;outline-offset:3px}
+.eyebrow{letter-spacing:.16em;font-weight:700;font-size:12px}.subtle{color:var(--muted)}
+.claims{display:grid;gap:22px}.claim{background:white;border:1px solid var(--line);border-radius:10px;padding:26px}
+.badge{display:inline-block;background:#e4efea;border-radius:4px;padding:3px 10px;font-size:13px;font-weight:650}
+.badge.limited,.badge.inconsistent,.badge.different,.badge.conflicting_evidence{background:#ffe9d9;color:#773a17}
+.badge.unknown{background:#ececf3;color:#47475c}blockquote{border-left:3px solid var(--accent);margin:18px 0;padding-left:18px;font-size:19px}
+.check{background:#f4f6f2;padding:18px;border-radius:5px;margin:18px 0}ul{padding-left:22px}
+dl{display:grid;grid-template-columns:190px 1fr;gap:10px 22px}dt{font-weight:650}dd{margin:0}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.7 ui-monospace,monospace;background:#edf1ed;padding:12px;border-radius:4px}
+.line{display:block;scroll-margin-top:20px}.line:target{background:#ffe1a0;outline:2px solid #ae671d}
+.ln{display:inline-block;min-width:4em;color:#526565;user-select:none}.source{margin-top:38px}.hash{overflow-wrap:anywhere;font:12px/1.5 ui-monospace,monospace}
+nav{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}nav a{border:1px solid var(--line);padding:6px 14px;border-radius:4px;text-decoration:none}
+@media(max-width:650px){main{padding:24px 16px}.claim{padding:18px}dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:12px}}
+@media print{body{background:white}.claim{break-inside:avoid}nav{display:none}}
+</style><main>
+<header><div class="eyebrow">PAPERCOURT / EVIDENCE REPORT</div>
+<h1>A broad abstract meets one narrow experiment</h1>
+<p class="subtle">Repeatable arithmetic. Inspectable sources. Testable next steps.</p>
+<p>Script checks cover arithmetic and selected metadata. Support assessments are <strong>model analysis</strong>, not academic verdicts. Missing evidence means unknown. Proposed checks have not been run.</p>
+<p class="hash">Case SHA-256: 43b9117f8110ad27b01ff6c3bc447d03c8ab632176b6907a46399e73c30b1822</p></header><nav aria-label="Claims">
+<a href="#claim-C1">C1</a>
+<a href="#claim-C2">C2</a>
+<a href="#claim-C3">C3</a>
+<a href="#claim-C4">C4</a>
+<a href="#claim-C5">C5</a>
+<a href="#claim-C6">C6</a>
+<a href="#sources">Sources</a></nav><section class="claims" aria-label="Claim reports">
+<article class="claim" id="claim-C1"><h2>C1</h2>
+<span class="badge limited">Model analysis · limited</span>
+<blockquote>Sprout improves classification accuracy across all image datasets and compute budgets.</blockquote><p><a href="#src-paper-L7">paper:7</a></p>
+<p>The supplied evidence covers MiniShapes at 10 epochs. It cannot establish improvement across all image datasets and compute budgets.</p><ul>
+<li><a href="#src-paper-L16">paper:16</a></li>
+<li><a href="#src-paper-L27">paper:27</a></li>
+<li><a href="#src-results-L2">results:2 {&quot;id&quot;: &quot;sprout&quot;}</a></li>
+<li><a href="#src-results-L3">results:3 {&quot;id&quot;: &quot;linear&quot;}</a></li>
+</ul>
+<dl>
+<dt>Limitations</dt><dd>No other dataset or training budget is supplied. This is a scope gap, not a demonstrated counterexample.</dd>
+<dt>Minimum next check</dt><dd>At a predeclared 1-epoch budget on MiniShapes, compare Sprout and Linear with the same split, tuning budget, metric, and seeds; report the paired per-seed differences.</dd>
+<dt>Observable falsifier</dt><dd>A controlled setting where Sprout has no positive mean accuracy difference would contradict the universal improvement claim.</dd>
+</dl></article>
+<article class="claim" id="claim-C2"><h2>C2</h2>
+<span class="badge supported_within_scope">Model analysis · supported_within_scope</span>
+<blockquote>On MiniShapes test data under the fixed 10-epoch protocol, Sprout reaches 82.0% accuracy.</blockquote><p><a href="#src-paper-L8">paper:8</a></p>
+<p>The qualified sentence matches the reported aggregate of 82.0% for the specified setting.</p><ul>
+<li><a href="#src-results-L2">results:2 {&quot;id&quot;: &quot;sprout&quot;}</a></li>
+<li><a href="#src-paper-L17">paper:17</a></li>
+<li><a href="#src-paper-L18">paper:18</a></li>
+</ul>
+<section class="check"><span class="badge consistent">Script check · consistent</span>
+<p>value: consistent — computed 82.0; claimed 82.0 ± 0.05 percent. Selected conditions: not_applicable.</p><ul>
+<li><a href="#src-results-L2">results:2 [value] {&quot;id&quot;: &quot;sprout&quot;}</a></li>
+</ul><ul>
+</ul></section>
+<dl>
+<dt>Limitations</dt><dd>Only an aggregate is supplied. Neither individual seed scores nor statistical significance can be recovered.</dd>
+<dt>Minimum next check</dt><dd>Recompute the unweighted mean from the three original evaluation logs under fixed-v1.</dd>
+<dt>Observable falsifier</dt><dd>An independently recomputed mean outside 82.0 +/- 0.05 percentage points would conflict with the stated rounded value.</dd>
+</dl></article>
+<article class="claim" id="claim-C3"><h2>C3</h2>
+<span class="badge conflicting_evidence">Model analysis · conflicting_evidence</span>
+<blockquote>Under that protocol, Sprout exceeds Linear by 5.0 percentage points.</blockquote><p><a href="#src-paper-L9">paper:9</a></p>
+<p>The supplied aggregates imply a 2.0 percentage-point difference, which conflicts with the quoted 5.0.</p><ul>
+<li><a href="#src-results-L2">results:2 {&quot;id&quot;: &quot;sprout&quot;}</a></li>
+<li><a href="#src-results-L3">results:3 {&quot;id&quot;: &quot;linear&quot;}</a></li>
+</ul>
+<section class="check"><span class="badge inconsistent">Script check · inconsistent</span>
+<p>difference: inconsistent — computed 2.0; claimed 5.0 ± 0.05 percentage points. Selected conditions: aligned.</p><ul>
+<li><a href="#src-results-L2">results:2 [value] {&quot;id&quot;: &quot;sprout&quot;}</a></li>
+<li><a href="#src-results-L3">results:3 [value] {&quot;id&quot;: &quot;linear&quot;}</a></li>
+</ul><ul>
+<li>dataset: <strong>aligned</strong> — [&quot;MiniShapes&quot;, &quot;MiniShapes&quot;]</li>
+<li>split: <strong>aligned</strong> — [&quot;test&quot;, &quot;test&quot;]</li>
+<li>metric: <strong>aligned</strong> — [&quot;accuracy&quot;, &quot;accuracy&quot;]</li>
+<li>unit: <strong>aligned</strong> — [&quot;percent&quot;, &quot;percent&quot;]</li>
+<li>protocol: <strong>aligned</strong> — [&quot;fixed-v1&quot;, &quot;fixed-v1&quot;]</li>
+<li>budget: <strong>aligned</strong> — [&quot;10 epochs&quot;, &quot;10 epochs&quot;]</li>
+<li>seeds: <strong>aligned</strong> — [&quot;11|22|33&quot;, &quot;11|22|33&quot;]</li>
+<li>aggregation: <strong>aligned</strong> — [&quot;mean&quot;, &quot;mean&quot;]</li>
+</ul></section>
+<dl>
+<dt>Limitations</dt><dd>This checks agreement with supplied aggregates; it does not establish which version of the paper or results is authoritative.</dd>
+<dt>Minimum next check</dt><dd>Reconcile the two aggregate values against the original evaluation logs and the manuscript version.</dd>
+<dt>Observable falsifier</dt><dd>If the authoritative values remain 82.0 and 80.0, the 5.0-point statement is contradicted.</dd>
+</dl></article>
+<article class="claim" id="claim-C4"><h2>C4</h2>
+<span class="badge limited">Model analysis · limited</span>
+<blockquote>Under identical hardware and batch settings, Sprout is 2.0 times faster than Linear.</blockquote><p><a href="#src-paper-L10">paper:10</a></p>
+<p>The arithmetic ratio is 2.0, but the timing rows use different hardware. The identical-hardware premise conflicts with the recorded settings.</p><ul>
+<li><a href="#src-runtime-L1">runtime:1 (JSON /0) {&quot;id&quot;: &quot;sprout&quot;}</a></li>
+<li><a href="#src-runtime-L1">runtime:1 (JSON /1) {&quot;id&quot;: &quot;linear&quot;}</a></li>
+<li><a href="#src-paper-L23">paper:23</a></li>
+</ul>
+<section class="check"><span class="badge consistent">Script check · consistent</span>
+<p>ratio: consistent — computed 2; claimed 2.0 ± 0.01 times. Selected conditions: different.</p><ul>
+<li><a href="#src-runtime-L1">runtime:1 (JSON /1) [value] {&quot;id&quot;: &quot;linear&quot;}</a></li>
+<li><a href="#src-runtime-L1">runtime:1 (JSON /0) [value] {&quot;id&quot;: &quot;sprout&quot;}</a></li>
+</ul><ul>
+<li>dataset: <strong>aligned</strong> — [&quot;MiniShapes&quot;, &quot;MiniShapes&quot;]</li>
+<li>split: <strong>aligned</strong> — [&quot;test&quot;, &quot;test&quot;]</li>
+<li>metric: <strong>aligned</strong> — [&quot;latency&quot;, &quot;latency&quot;]</li>
+<li>unit: <strong>aligned</strong> — [&quot;milliseconds&quot;, &quot;milliseconds&quot;]</li>
+<li>protocol: <strong>aligned</strong> — [&quot;timing-v1&quot;, &quot;timing-v1&quot;]</li>
+<li>hardware: <strong>different</strong> — [&quot;CPU&quot;, &quot;GPU&quot;]</li>
+<li>batch_size: <strong>aligned</strong> — [64, 64]</li>
+<li>precision: <strong>aligned</strong> — [&quot;FP32&quot;, &quot;FP32&quot;]</li>
+</ul></section>
+<dl>
+<dt>Limitations</dt><dd>There is only one timing observation per model. Hardware is a confounder and variance is unavailable.</dd>
+<dt>Minimum next check</dt><dd>Time both models on the same device at batch 64 and FP32, using the same warmup, synchronization, and repeated-run protocol.</dd>
+<dt>Observable falsifier</dt><dd>A controlled baseline/method median time ratio below 2.0 would challenge the claimed twofold speed advantage.</dd>
+</dl></article>
+<article class="claim" id="claim-C5"><h2>C5</h2>
+<span class="badge unknown">Model analysis · unknown</span>
+<blockquote>Sprout remains accurate under distribution shift.</blockquote><p><a href="#src-paper-L11">paper:11</a></p>
+<p>No distribution-shift evaluation is supplied. The absence does not establish that Sprout fails under shift.</p><ul>
+<li><a href="#src-paper-L27">paper:27</a></li>
+</ul>
+<dl>
+<dt>Limitations</dt><dd>The claim does not define the shift or what counts as remaining accurate.</dd>
+<dt>Minimum next check</dt><dd>Predeclare a concrete shift, such as a fixed blur corruption, and an accuracy-retention threshold; evaluate both clean and shifted MiniShapes test inputs.</dd>
+<dt>Observable falsifier</dt><dd>Retention below the predeclared threshold would challenge the operationalized robustness claim; no threshold or result is asserted here.</dd>
+</dl></article>
+<article class="claim" id="claim-C6"><h2>C6</h2>
+<span class="badge supported_within_scope">Model analysis · supported_within_scope</span>
+<blockquote>The in-distribution accuracy gain over Linear is 2.5% relative.</blockquote><p><a href="#src-paper-L12">paper:12</a></p>
+<p>The supplied accuracy aggregates imply a 2.5% relative increase over Linear in the described in-distribution setting.</p><ul>
+<li><a href="#src-results-L2">results:2 {&quot;id&quot;: &quot;sprout&quot;}</a></li>
+<li><a href="#src-results-L3">results:3 {&quot;id&quot;: &quot;linear&quot;}</a></li>
+<li><a href="#src-paper-L16">paper:16</a></li>
+</ul>
+<section class="check"><span class="badge consistent">Script check · consistent</span>
+<p>relative_change: consistent — computed 2.500; claimed 2.5 ± 0.05 percent relative. Selected conditions: aligned.</p><ul>
+<li><a href="#src-results-L2">results:2 [value] {&quot;id&quot;: &quot;sprout&quot;}</a></li>
+<li><a href="#src-results-L3">results:3 [value] {&quot;id&quot;: &quot;linear&quot;}</a></li>
+</ul><ul>
+<li>dataset: <strong>aligned</strong> — [&quot;MiniShapes&quot;, &quot;MiniShapes&quot;]</li>
+<li>split: <strong>aligned</strong> — [&quot;test&quot;, &quot;test&quot;]</li>
+<li>metric: <strong>aligned</strong> — [&quot;accuracy&quot;, &quot;accuracy&quot;]</li>
+<li>unit: <strong>aligned</strong> — [&quot;percent&quot;, &quot;percent&quot;]</li>
+<li>protocol: <strong>aligned</strong> — [&quot;fixed-v1&quot;, &quot;fixed-v1&quot;]</li>
+<li>budget: <strong>aligned</strong> — [&quot;10 epochs&quot;, &quot;10 epochs&quot;]</li>
+<li>seeds: <strong>aligned</strong> — [&quot;11|22|33&quot;, &quot;11|22|33&quot;]</li>
+<li>aggregation: <strong>aligned</strong> — [&quot;mean&quot;, &quot;mean&quot;]</li>
+</ul></section>
+<dl>
+<dt>Limitations</dt><dd>This relative arithmetic does not establish statistical significance or generalization.</dd>
+<dt>Minimum next check</dt><dd>Recompute both means from the original per-seed logs, preserving the same split and protocol.</dd>
+<dt>Observable falsifier</dt><dd>A recomputed relative increase outside 2.5 +/- 0.05 percent would conflict with the rounded claim.</dd>
+</dl></article>
+</section><section id="sources"><h2>Source snapshots</h2><p>Hashes identify exact input bytes; they do not establish authenticity. These snapshots contain the supplied material.</p>
+<article class="source"><h3>paper · paper.md</h3><p class="hash">SHA-256: b4025f859bda98e3ee0c90077f248481fabd5b6fe28c4eb7190d57ff223ae43d</p><pre>
+<span class="line" id="src-paper-L1"><a class="ln" href="#src-paper-L1" aria-label="Line 1">1</a># Sprout: A Tiny Classification Study</span>
+<span class="line" id="src-paper-L2"><a class="ln" href="#src-paper-L2" aria-label="Line 2">2</a></span>
+<span class="line" id="src-paper-L3"><a class="ln" href="#src-paper-L3" aria-label="Line 3">3</a>This is an original fictional teaching example, not a published paper or an experimental result.</span>
+<span class="line" id="src-paper-L4"><a class="ln" href="#src-paper-L4" aria-label="Line 4">4</a></span>
+<span class="line" id="src-paper-L5"><a class="ln" href="#src-paper-L5" aria-label="Line 5">5</a>## Abstract</span>
+<span class="line" id="src-paper-L6"><a class="ln" href="#src-paper-L6" aria-label="Line 6">6</a></span>
+<span class="line" id="src-paper-L7"><a class="ln" href="#src-paper-L7" aria-label="Line 7">7</a>Sprout improves classification accuracy across all image datasets and compute budgets.</span>
+<span class="line" id="src-paper-L8"><a class="ln" href="#src-paper-L8" aria-label="Line 8">8</a>On MiniShapes test data under the fixed 10-epoch protocol, Sprout reaches 82.0% accuracy.</span>
+<span class="line" id="src-paper-L9"><a class="ln" href="#src-paper-L9" aria-label="Line 9">9</a>Under that protocol, Sprout exceeds Linear by 5.0 percentage points.</span>
+<span class="line" id="src-paper-L10"><a class="ln" href="#src-paper-L10" aria-label="Line 10">10</a>Under identical hardware and batch settings, Sprout is 2.0 times faster than Linear.</span>
+<span class="line" id="src-paper-L11"><a class="ln" href="#src-paper-L11" aria-label="Line 11">11</a>Sprout remains accurate under distribution shift.</span>
+<span class="line" id="src-paper-L12"><a class="ln" href="#src-paper-L12" aria-label="Line 12">12</a>The in-distribution accuracy gain over Linear is 2.5% relative.</span>
+<span class="line" id="src-paper-L13"><a class="ln" href="#src-paper-L13" aria-label="Line 13">13</a></span>
+<span class="line" id="src-paper-L14"><a class="ln" href="#src-paper-L14" aria-label="Line 14">14</a>## Experiment</span>
+<span class="line" id="src-paper-L15"><a class="ln" href="#src-paper-L15" aria-label="Line 15">15</a></span>
+<span class="line" id="src-paper-L16"><a class="ln" href="#src-paper-L16" aria-label="Line 16">16</a>The only accuracy experiment uses MiniShapes, the test split, and 10 training epochs.</span>
+<span class="line" id="src-paper-L17"><a class="ln" href="#src-paper-L17" aria-label="Line 17">17</a>Both models use three seeds (11, 22, 33); results.csv contains their unweighted mean accuracies on a 0-100 scale.</span>
+<span class="line" id="src-paper-L18"><a class="ln" href="#src-paper-L18" aria-label="Line 18">18</a>The accuracy protocol is fixed-v1. No confidence interval or significance test is supplied.</span>
+<span class="line" id="src-paper-L19"><a class="ln" href="#src-paper-L19" aria-label="Line 19">19</a></span>
+<span class="line" id="src-paper-L20"><a class="ln" href="#src-paper-L20" aria-label="Line 20">20</a>## Timing</span>
+<span class="line" id="src-paper-L21"><a class="ln" href="#src-paper-L21" aria-label="Line 21">21</a></span>
+<span class="line" id="src-paper-L22"><a class="ln" href="#src-paper-L22" aria-label="Line 22">22</a>runtime.json records one timing observation per model; preprocessing time is excluded.</span>
+<span class="line" id="src-paper-L23"><a class="ln" href="#src-paper-L23" aria-label="Line 23">23</a>Sprout was timed on a GPU and Linear on a CPU, both at batch size 64 and FP32.</span>
+<span class="line" id="src-paper-L24"><a class="ln" href="#src-paper-L24" aria-label="Line 24">24</a></span>
+<span class="line" id="src-paper-L25"><a class="ln" href="#src-paper-L25" aria-label="Line 25">25</a>## Limitations</span>
+<span class="line" id="src-paper-L26"><a class="ln" href="#src-paper-L26" aria-label="Line 26">26</a></span>
+<span class="line" id="src-paper-L27"><a class="ln" href="#src-paper-L27" aria-label="Line 27">27</a>No other dataset, compute budget, or distribution-shift evaluation is included in these materials.</span>
+</pre></article>
+<article class="source"><h3>results · results.csv</h3><p class="hash">SHA-256: 02aa99aa74b7e2564a29d1b1e4c22e560ece2cf92c9face1f2a92d2214c71d65</p><pre>
+<span class="line" id="src-results-L1"><a class="ln" href="#src-results-L1" aria-label="Line 1">1</a>id,model,dataset,split,metric,unit,protocol,budget,seeds,aggregation,value</span>
+<span class="line" id="src-results-L2"><a class="ln" href="#src-results-L2" aria-label="Line 2">2</a>sprout,Sprout,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,82.0</span>
+<span class="line" id="src-results-L3"><a class="ln" href="#src-results-L3" aria-label="Line 3">3</a>linear,Linear,MiniShapes,test,accuracy,percent,fixed-v1,10 epochs,11|22|33,mean,80.0</span>
+</pre></article>
+<article class="source"><h3>runtime · runtime.json</h3><p class="hash">SHA-256: 0b5ddefa6641e019ad22c45028774cf2c3a0e9861a2337c40bf2d88d2c679b6b</p><pre>
+<span class="line" id="src-runtime-L1"><a class="ln" href="#src-runtime-L1" aria-label="Line 1">1</a>[</span>
+<span class="line" id="src-runtime-L2"><a class="ln" href="#src-runtime-L2" aria-label="Line 2">2</a>  {</span>
+<span class="line" id="src-runtime-L3"><a class="ln" href="#src-runtime-L3" aria-label="Line 3">3</a>    &quot;id&quot;: &quot;sprout&quot;,</span>
+<span class="line" id="src-runtime-L4"><a class="ln" href="#src-runtime-L4" aria-label="Line 4">4</a>    &quot;model&quot;: &quot;Sprout&quot;,</span>
+<span class="line" id="src-runtime-L5"><a class="ln" href="#src-runtime-L5" aria-label="Line 5">5</a>    &quot;dataset&quot;: &quot;MiniShapes&quot;,</span>
+<span class="line" id="src-runtime-L6"><a class="ln" href="#src-runtime-L6" aria-label="Line 6">6</a>    &quot;split&quot;: &quot;test&quot;,</span>
+<span class="line" id="src-runtime-L7"><a class="ln" href="#src-runtime-L7" aria-label="Line 7">7</a>    &quot;metric&quot;: &quot;latency&quot;,</span>
+<span class="line" id="src-runtime-L8"><a class="ln" href="#src-runtime-L8" aria-label="Line 8">8</a>    &quot;unit&quot;: &quot;milliseconds&quot;,</span>
+<span class="line" id="src-runtime-L9"><a class="ln" href="#src-runtime-L9" aria-label="Line 9">9</a>    &quot;protocol&quot;: &quot;timing-v1&quot;,</span>
+<span class="line" id="src-runtime-L10"><a class="ln" href="#src-runtime-L10" aria-label="Line 10">10</a>    &quot;hardware&quot;: &quot;GPU&quot;,</span>
+<span class="line" id="src-runtime-L11"><a class="ln" href="#src-runtime-L11" aria-label="Line 11">11</a>    &quot;batch_size&quot;: 64,</span>
+<span class="line" id="src-runtime-L12"><a class="ln" href="#src-runtime-L12" aria-label="Line 12">12</a>    &quot;precision&quot;: &quot;FP32&quot;,</span>
+<span class="line" id="src-runtime-L13"><a class="ln" href="#src-runtime-L13" aria-label="Line 13">13</a>    &quot;value&quot;: 10</span>
+<span class="line" id="src-runtime-L14"><a class="ln" href="#src-runtime-L14" aria-label="Line 14">14</a>  },</span>
+<span class="line" id="src-runtime-L15"><a class="ln" href="#src-runtime-L15" aria-label="Line 15">15</a>  {</span>
+<span class="line" id="src-runtime-L16"><a class="ln" href="#src-runtime-L16" aria-label="Line 16">16</a>    &quot;id&quot;: &quot;linear&quot;,</span>
+<span class="line" id="src-runtime-L17"><a class="ln" href="#src-runtime-L17" aria-label="Line 17">17</a>    &quot;model&quot;: &quot;Linear&quot;,</span>
+<span class="line" id="src-runtime-L18"><a class="ln" href="#src-runtime-L18" aria-label="Line 18">18</a>    &quot;dataset&quot;: &quot;MiniShapes&quot;,</span>
+<span class="line" id="src-runtime-L19"><a class="ln" href="#src-runtime-L19" aria-label="Line 19">19</a>    &quot;split&quot;: &quot;test&quot;,</span>
+<span class="line" id="src-runtime-L20"><a class="ln" href="#src-runtime-L20" aria-label="Line 20">20</a>    &quot;metric&quot;: &quot;latency&quot;,</span>
+<span class="line" id="src-runtime-L21"><a class="ln" href="#src-runtime-L21" aria-label="Line 21">21</a>    &quot;unit&quot;: &quot;milliseconds&quot;,</span>
+<span class="line" id="src-runtime-L22"><a class="ln" href="#src-runtime-L22" aria-label="Line 22">22</a>    &quot;protocol&quot;: &quot;timing-v1&quot;,</span>
+<span class="line" id="src-runtime-L23"><a class="ln" href="#src-runtime-L23" aria-label="Line 23">23</a>    &quot;hardware&quot;: &quot;CPU&quot;,</span>
+<span class="line" id="src-runtime-L24"><a class="ln" href="#src-runtime-L24" aria-label="Line 24">24</a>    &quot;batch_size&quot;: 64,</span>
+<span class="line" id="src-runtime-L25"><a class="ln" href="#src-runtime-L25" aria-label="Line 25">25</a>    &quot;precision&quot;: &quot;FP32&quot;,</span>
+<span class="line" id="src-runtime-L26"><a class="ln" href="#src-runtime-L26" aria-label="Line 26">26</a>    &quot;value&quot;: 20</span>
+<span class="line" id="src-runtime-L27"><a class="ln" href="#src-runtime-L27" aria-label="Line 27">27</a>  }</span>
+<span class="line" id="src-runtime-L28"><a class="ln" href="#src-runtime-L28" aria-label="Line 28">28</a>]</span>
+</pre></article>
+</section><footer><p>PaperCourt 0.1.0 · Local report · No external assets</p></footer></main></html>
